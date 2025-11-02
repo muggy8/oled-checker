@@ -10,12 +10,17 @@ import { minify } from "terser"
 
 
 const sourceDir = "src"
-const outputDir = "docs/"
+const outputDir = "docs"
 const cleanCss = new CleanCSS({})
 
 export const copy = function() {
 	return src([
 		`${sourceDir}/**/*.*`,
+		`${sourceDir}/*.*`,
+		`!${sourceDir}/*.md`,
+		`!${sourceDir}/*.png`,
+		`!${sourceDir}/*.svg`,
+		`!${sourceDir}/*.webp`,
 		`!${sourceDir}/**/*.md`,
 		`!${sourceDir}/**/*.png`,
 		`!${sourceDir}/**/*.svg`,
@@ -25,19 +30,28 @@ export const copy = function() {
 }
 
 export const minifyJs = function() {
-	return src(`${sourceDir}/**/*.js`)
+	return src([
+		`${sourceDir}/*.js`,
+		`${sourceDir}/**/*.js`
+	])
 		.pipe(gulpTerser())
 		.pipe(dest(outputDir))
 }
 
 export const minifyCss = function() {
-	return src(`${sourceDir}/**/*.css`)
+	return src([
+		`${sourceDir}/*.css`,
+		`${sourceDir}/**/*.css`
+	])
 		.pipe(gulpCleanCSS())
 		.pipe(dest(outputDir))
 }
 
 export const minifyHtml = function() {
-	return src(`${sourceDir}/**/*.html`)
+	return src([
+		`${sourceDir}/*.html`,
+		`${sourceDir}/**/*.html`,
+	])
 		.pipe(htmlmin({ collapseWhitespace: true }))
 		.pipe(replace(/<style[^>]*>(.+?)<\/style>/gs, function(match, cssCode){
             // console.log("css replace", {match, cssCode})
@@ -58,6 +72,8 @@ export const minifyHtml = function() {
 
 export const minifyJson = function(){
 	return src([
+			`${sourceDir}/*.json`,
+			`${sourceDir}/*.webmanifest`,
 			`${sourceDir}/**/*.json`,
 			`${sourceDir}/**/*.webmanifest`,
 		])
@@ -67,6 +83,10 @@ export const minifyJson = function(){
 
 export const copyArt = function() {
 	return src([
+		`${sourceDir}/*.png`,
+		`${sourceDir}/*.svg`,
+		`${sourceDir}/*.webp`,
+		`${sourceDir}/*.ico`,
 		`${sourceDir}/**/*.png`,
 		`${sourceDir}/**/*.svg`,
 		`${sourceDir}/**/*.webp`,
@@ -77,6 +97,9 @@ export const copyArt = function() {
 
 export const minifyArt = function() {
 	return src([
+		`${sourceDir}/*.png`,
+		`${sourceDir}/*.svg`,
+		`${sourceDir}/*.webp`,
 		`${sourceDir}/**/*.png`,
 		`${sourceDir}/**/*.svg`,
 		`${sourceDir}/**/*.webp`,
