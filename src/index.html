@@ -15,10 +15,11 @@
         }
         
         html, body {
-            color: FFF;
-            background-color: #000;
+            color: #000;
+            background-color: currentColor;
             padding: 0;
             margin: 0;
+            transition: color 0.25s, background-color 0.25s;
         }
 
         html, body, .explain {
@@ -61,15 +62,56 @@
         }
 
         .explain .content a {
-            color: cyan;
+            color: #a6a0fc;
+        }
+        
+        .explain .content button {
+            font-size: 1rem;
+            padding: 0.5em;
+            cursor: pointer;
+        }
+
+        .red {
+            color: #F00;
+        }
+        .green {
+            color: #0F0;
+        }
+        .blue {
+            color: #00F;
+        }
+        .cyan {
+            color: #0ff
+        }
+        .magenta {
+            color: #F0F
+        }
+        .yellow {
+            color: #FF0
+        }
+
+        .default .restore-default {
+            display: none;
         }
     </style>
 </head>
-<body>
+<body class="default">
     <main class="explain invisible" onclick="this.classList.toggle('invisible')">
         <div class="content">
             <h1>What is this?</h1>
             <p>This site allow you to check if the screen you're using is an <a href="https://en.wikipedia.org/wiki/OLED" target="_blank" onclick="event.stopPropagation()">OLED</a> or <a href="https://en.wikipedia.org/wiki/MicroLED" target="_blank" onclick="event.stopPropagation()">Micro LED</a> panel. Pure black pixels on OLED and Micro LED screen do not emit light. If you see any light coming from the screen when viewing this page in the dark, it is likely that the screen you're view this on is NOT an OLED or Micro LED screen.</p>
+
+            <p>You can also check your screen for Burn in by changing the color of the page to any of the following</p>
+
+            <div>
+                <button class="red" onclick="document.body.setAttribute('class', 'red')">Red</button>
+                <button class="green" onclick="document.body.setAttribute('class', 'green')">Green</button>
+                <button class="blue" onclick="document.body.setAttribute('class', 'blue')">Blue</button>
+                <button class="cyan" onclick="document.body.setAttribute('class', 'cyan')">Cyan</button>
+                <button class="magenta" onclick="document.body.setAttribute('class', 'magenta')">Magenta</button>
+                <button class="yellow" onclick="document.body.setAttribute('class', 'yellow')">Yellow</button>
+                <button class="restore-default" onclick="document.body.setAttribute('class', 'default')">Restore Default</button>
+            </div>
         </div>
     </main>
 </body>
