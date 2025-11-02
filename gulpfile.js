@@ -21,10 +21,12 @@ export const copy = function() {
 		`!${sourceDir}/*.png`,
 		`!${sourceDir}/*.svg`,
 		`!${sourceDir}/*.webp`,
+		`!${sourceDir}/*.ico`,
 		`!${sourceDir}/**/*.md`,
 		`!${sourceDir}/**/*.png`,
 		`!${sourceDir}/**/*.svg`,
 		`!${sourceDir}/**/*.webp`,
+		`!${sourceDir}/**/*.ico`,
 	])
 	.pipe(dest(outputDir))
 }

@@ -15,7 +15,7 @@
   ],
   "theme_color": "#000000",
   "background_color": "#000000",
-  "display": "standalone",
+  "display": "fullscreen",
   "description": "An app that lets users verify if their screen is an OLED or Micro LED screen",
   "orientation": "any",
   "categories": ["utilities"],
