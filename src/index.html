@@ -15,8 +15,8 @@
         }
         
         html, body {
-            color: #000;
-            background-color: currentColor;
+            color: currentColor;
+            background-color: var(--bg);
             padding: 0;
             margin: 0;
             transition: color 0.25s, background-color 0.25s;
@@ -28,7 +28,6 @@
         }
 
         .explain {
-            overflow: auto;
             transition: opacity 0.25s;
             text-align: center;
             font-size: 1.5rem;
@@ -57,8 +56,10 @@
 
         .explain .content {
             max-width: 40rem;
-            color: #FFF;
-
+            color: currentColor;
+            padding: 1em;
+            overflow-y: auto;
+            height: 100%;
         }
 
         .explain .content a {
@@ -72,27 +73,50 @@
         }
 
         .red {
-            color: #F00;
+            --bg: #F00;
+            color: #FFF;
         }
         .green {
-            color: #0F0;
+            --bg: #0F0;
+            color: #FFF;
         }
         .blue {
-            color: #00F;
+            --bg: #00F;
+            color: #FFF;
         }
         .cyan {
-            color: #0ff
+            --bg: #0ff;
+            color: #000;
         }
         .magenta {
-            color: #F0F
+            --bg: #F0F;
+            color: #000;
         }
         .yellow {
-            color: #FF0
+            --bg: #FF0;
+            color: #000;
+        }
+        .white {
+            --bg: #FFF;
+            color: #000;
+        }
+        .default {
+            --bg: #000;
+            color: #FFF;
         }
 
         .default .restore-default {
             display: none;
         }
+
+        .default .explain .content {
+            padding-bottom: 3em;
+        }
+
+        .text-color-as-bg-color {
+            color: var(--bg);
+        }
+
     </style>
 
     <!-- and now we have the SEO stuff -->
@@ -121,13 +145,14 @@
             <p>You can also check your screen for Burn in by changing the color of the page to any of the following</p>
 
             <div>
-                <button class="red" onclick="document.body.setAttribute('class', 'red')">Red</button>
-                <button class="green" onclick="document.body.setAttribute('class', 'green')">Green</button>
-                <button class="blue" onclick="document.body.setAttribute('class', 'blue')">Blue</button>
-                <button class="cyan" onclick="document.body.setAttribute('class', 'cyan')">Cyan</button>
-                <button class="magenta" onclick="document.body.setAttribute('class', 'magenta')">Magenta</button>
-                <button class="yellow" onclick="document.body.setAttribute('class', 'yellow')">Yellow</button>
-                <button class="restore-default" onclick="document.body.setAttribute('class', 'default')">Restore Default</button>
+                <button class="red text-color-as-bg-color" onclick="document.body.setAttribute('class', 'red')">Red</button>
+                <button class="green text-color-as-bg-color" onclick="document.body.setAttribute('class', 'green')">Green</button>
+                <button class="blue text-color-as-bg-color" onclick="document.body.setAttribute('class', 'blue')">Blue</button>
+                <button class="cyan text-color-as-bg-color" onclick="document.body.setAttribute('class', 'cyan')">Cyan</button>
+                <button class="magenta text-color-as-bg-color" onclick="document.body.setAttribute('class', 'magenta')">Magenta</button>
+                <button class="yellow text-color-as-bg-color" onclick="document.body.setAttribute('class', 'yellow')">Yellow</button>
+                <button class="white text-color-as-bg-color" onclick="document.body.setAttribute('class', 'white')">white</button>
+                <button class="restore-default default text-color-as-bg-color" onclick="document.body.setAttribute('class', 'default')">Restore Default</button>
             </div>
         </div>
     </main>
